@@ -1,0 +1,1 @@
+export const SET_RECOMMEND = 'SET_RECOMMEND'

@@ -14,7 +14,7 @@
                 <div class="recommend-list">
                     <h1 class="list-title">热门歌单推荐</h1>
                     <ul>
-                        <li class="item" v-for="item in recommendMusicList" :key="item.id">
+                        <li class="item" v-for="item in recommendMusicList" :key="item.id" @click="selectItem(item)">
                           <div class="icon">
                             <img width="60" height="60" :src="item.picUrl">
                           </div>
@@ -30,6 +30,7 @@
                <loading></loading>
             </div>
         </Scroll>
+        <router-view></router-view>
     </div>
 </template>
 <script>
@@ -38,6 +39,7 @@ import { ERR_OK } from "api/config";
 import Slider from "base/slider/slider";
 import Scroll from "base/scroll/scroll";
 import Loading from "base/loading/loading";
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -73,7 +75,17 @@ export default {
         this.$refs.scroll.refresh();
         this.checkLoaded = true;
       }
-    }
+    },
+    selectItem(item) {
+        console.log(item);
+        this.$router.push({
+          path: `/recommend/${item.id}`
+       })
+       this.setRecommend(item);
+    },
+    ...mapMutations({
+        setRecommend: 'SET_RECOMMEND'
+    })
   },
   components: {
     Slider,
