@@ -1,7 +1,7 @@
 <template>
     <div class="song-list">
         <ul>
-           <li v-for="item in songs" class="item" :key="item.id">
+           <li v-for="(item,index) in songs" class="item" :key="item.id" @click="selectItem(item,index)">
                <div class="content">
                    <h2 class="name">{{item.name}}</h2>
                    <p class="desc" v-for="singer in item.artists" >{{getDesc(singer)}}</p>
@@ -12,21 +12,22 @@
 </template>
 <script>
 export default {
-    data(){
-      return {
-      }
-    },
+  data() {
+    return {};
+  },
   props: {
     songs: {
       type: Array,
       default: []
     }
   },
-  created(){
-  },
+  created() {},
   methods: {
     getDesc(singer) {
       return `${singer.name}`;
+    },
+    selectItem(item,index){
+      this.$emit('select',item,index)
     }
   }
 };

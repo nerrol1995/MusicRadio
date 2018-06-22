@@ -65,7 +65,7 @@ export default {
     _getRecommendMusicList() {
       getRecommendMusicList().then(res => {
         if (res.data.code === ERR_OK) {
-          console.log(res);
+        //   console.log(res);
           this.recommendMusicList = res.data.result;
         }
       });
