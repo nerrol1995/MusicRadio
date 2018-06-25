@@ -48,6 +48,9 @@ export default {
   created() {
     this.probType = 3;
     this.listenScroll = true;
+    try {
+      window.addEventListener("click", null, {"passive":false});
+    } catch (err) {}
   },
   computed: {
     bgStyle() {
